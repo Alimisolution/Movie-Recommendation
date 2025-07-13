@@ -28,18 +28,21 @@ A comprehensive React-based movie recommendation system with machine learning co
 ## 🚀 Technologies Used
 
 - **Frontend**: React 18, React Router DOM
+- **Build Tool**: Vite (Fast build tool and dev server)
 - **Styling**: CSS3 with modern animations and responsive design
 - **State Management**: React Context API
 - **UI Components**: Custom components with Framer Motion animations
 - **Icons**: React Icons
 - **Rating System**: React Star Rating Component
 - **Notifications**: React Hot Toast
+- **HTTP Client**: Axios
+- **Form Handling**: React Hook Form
 
 ## 📋 Prerequisites
 
 Before running this project, make sure you have the following installed:
 
-- **Node.js** (version 14 or higher)
+- **Node.js** (version 16 or higher)
 - **npm** (comes with Node.js)
 
 ## 🛠️ Installation
@@ -57,7 +60,7 @@ Before running this project, make sure you have the following installed:
 
 3. **Start the development server**:
    ```bash
-   npm start
+   npm run dev
    ```
 
 4. **Open your browser** and navigate to:
@@ -128,10 +131,10 @@ src/
 
 ## 🔧 Available Scripts
 
-- `npm start` - Runs the app in development mode
-- `npm build` - Builds the app for production
-- `npm test` - Launches the test runner
-- `npm eject` - Ejects from Create React App (not recommended)
+- `npm run dev` - Runs the app in development mode with Vite
+- `npm run build` - Builds the app for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint to check code quality
 
 ## 📱 Responsive Design
 
@@ -159,10 +162,10 @@ To deploy this application:
    ```
 
 2. **Deploy to your preferred platform**:
-   - **Netlify**: Drag and drop the `build` folder
+   - **Netlify**: Drag and drop the `dist` folder
    - **Vercel**: Connect your GitHub repository
    - **Firebase**: Use Firebase Hosting
-   - **AWS S3**: Upload the `build` folder
+   - **AWS S3**: Upload the `dist` folder
 
 ## 🔒 Security Features
 
@@ -191,8 +194,15 @@ To deploy this application:
 
 3. **Build errors**:
    ```bash
-   # Clear build cache
-   npm run build -- --reset-cache
+   # Clear Vite cache
+   rm -rf node_modules/.vite
+   npm run build
+   ```
+
+4. **Vite dev server issues**:
+   ```bash
+   # Restart the dev server
+   npm run dev -- --force
    ```
 
 ## 📄 License
@@ -208,7 +218,7 @@ This is a demo project for educational purposes. Feel free to use it as a refere
 For any questions or issues:
 1. Check the troubleshooting section above
 2. Review the code comments for implementation details
-3. Refer to the React documentation for framework-specific questions
+3. Refer to the React and Vite documentation for framework-specific questions
 
 ---
 
