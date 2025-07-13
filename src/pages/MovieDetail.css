@@ -1,0 +1,510 @@
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #667eea;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  color: #764ba2;
+  transform: translateX(-5px);
+}
+
+.movie-header {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.movie-poster-section {
+  position: relative;
+}
+
+.movie-poster {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.movie-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.poster-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.fallback-content h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.fallback-content p {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.movie-poster-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-poster:hover .movie-poster-overlay {
+  opacity: 1;
+}
+
+.play-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.movie-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.movie-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.movie-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.meta-item svg {
+  color: #667eea;
+}
+
+.movie-rating-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.rating-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.star-icon {
+  color: #ffd700;
+  font-size: 1.5rem;
+}
+
+.rating-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.rating-count {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.user-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-rating span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.genre-tag {
+  background: rgba(102, 126, 234, 0.2);
+  color: #667eea;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.movie-description h3,
+.movie-cast h3,
+.movie-director h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.movie-description p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.cast-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cast-member {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.movie-director p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+/* Reviews Section */
+.reviews-section {
+  margin-top: 60px;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.reviews-header h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.login-prompt {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.login-prompt p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+.review-form {
+  margin-bottom: 30px;
+  padding: 25px;
+}
+
+.review-form h3 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-item {
+  padding: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-icon {
+  color: #667eea;
+  font-size: 1rem;
+}
+
+.reviewer-name {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+}
+
+.review-content p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.review-date {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.movie-not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.movie-not-found h2 {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.movie-not-found p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .movie-header {
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+  }
+  
+  .movie-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .movie-poster-section {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .movie-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .movie-meta {
+    justify-content: center;
+  }
+  
+  .movie-rating-section {
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .movie-genres {
+    justify-content: center;
+  }
+  
+  .reviews-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-title {
+    font-size: 1.5rem;
+  }
+  
+  .movie-meta {
+    gap: 15px;
+  }
+  
+  .meta-item {
+    font-size: 0.85rem;
+  }
+  
+  .rating-value {
+    font-size: 1.3rem;
+  }
+  
+  .genre-tag {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  
+  .cast-member {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Animation for movie poster */
+.movie-poster {
+  animation: posterEntrance 0.8s ease-out;
+}
+
+@keyframes posterEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.9) rotateY(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+/* Hover effects */
+.movie-poster:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+.genre-tag:hover {
+  background: rgba(102, 126, 234, 0.3);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.cast-member:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Star rating customization */
+.react-stars {
+  display: inline-block;
+}
+
+.react-stars svg {
+  margin-right: 2px;
+} 
