@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
+const API_BASE = 'https://movierecommender-i9ne.onrender.com/api';
+
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -15,28 +17,6 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Mock users for demo purposes
-  const mockUsers = [
-    {
-      id: 1,
-      email: 'admin@movie.com',
-      password: 'admin123',
-      name: 'Admin User',
-      role: 'admin',
-      avatar: 'https://via.placeholder.com/150/667eea/ffffff?text=A',
-      preferences: ['Action', 'Drama', 'Sci-Fi']
-    },
-    {
-      id: 2,
-      email: 'user@movie.com',
-      password: 'user123',
-      name: 'John Doe',
-      role: 'user',
-      avatar: 'https://via.placeholder.com/150/764ba2/ffffff?text=J',
-      preferences: ['Comedy', 'Romance', 'Thriller']
-    }
-  ];
-
   useEffect(() => {
     // Check if user is logged in from localStorage
     const savedUser = localStorage.getItem('currentUser');
@@ -48,20 +28,22 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const user = mockUsers.find(u => u.email === email && u.password === password);
-      
-      if (user) {
-        const { password: _, ...userWithoutPassword } = user;
-        setCurrentUser(userWithoutPassword);
-        localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
-        toast.success(`Welcome back, ${user.name}!`);
+      const response = await fetch(`${API_BASE}/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: email, password })
+      });
+      const data = await response.json();
+      if (response.ok && data.token) {
+        // Save token and user info
+        const user = { email, token: data.token, role: 'user' };
+        setCurrentUser(user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        toast.success(`Welcome back!`);
         return { success: true };
       } else {
-        toast.error('Invalid email or password');
-        return { success: false, error: 'Invalid credentials' };
+        toast.error(data.message || 'Invalid email or password');
+        return { success: false, error: data.message || 'Invalid credentials' };
       }
     } catch (error) {
       toast.error('Login failed. Please try again.');
@@ -71,32 +53,19 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Check if user already exists
-      const existingUser = mockUsers.find(u => u.email === email);
-      if (existingUser) {
-        toast.error('User with this email already exists');
-        return { success: false, error: 'User already exists' };
+      const response = await fetch(`${API_BASE}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: email, password })
+      });
+      const data = await response.json();
+      if (response.ok) {
+        toast.success('Registration successful! Please log in.');
+        return { success: true };
+      } else {
+        toast.error(data.message || 'Registration failed');
+        return { success: false, error: data.message || 'Registration failed' };
       }
-
-      // Create new user
-      const newUser = {
-        id: mockUsers.length + 1,
-        name,
-        email,
-        password,
-        role: 'user',
-        avatar: `https://via.placeholder.com/150/667eea/ffffff?text=${name.charAt(0)}`,
-        preferences: []
-      };
-
-      const { password: _, ...userWithoutPassword } = newUser;
-      setCurrentUser(userWithoutPassword);
-      localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
-      toast.success('Registration successful! Welcome to Movie Rec!');
-      return { success: true };
     } catch (error) {
       toast.error('Registration failed. Please try again.');
       return { success: false, error: error.message };
@@ -109,6 +78,7 @@ export const AuthProvider = ({ children }) => {
     toast.success('Logged out successfully');
   };
 
+  // Profile and preferences remain local for user
   const updateProfile = (updates) => {
     if (currentUser) {
       const updatedUser = { ...currentUser, ...updates };
@@ -127,18 +97,8 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const value = {
-    currentUser,
-    login,
-    register,
-    logout,
-    updateProfile,
-    updatePreferences,
-    loading
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ currentUser, loading, login, register, logout, updateProfile, updatePreferences }}>
       {children}
     </AuthContext.Provider>
   );

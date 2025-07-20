@@ -1,14 +1,15 @@
 # Movie Recommendation System
 
-A comprehensive React-based movie recommendation system with machine learning concepts, built for final year projects. This application provides personalized movie recommendations, user authentication, rating and review systems, and an admin dashboard.
+A comprehensive React-based movie recommendation system with machine learning concepts, built for final year projects. This application provides personalized movie recommendations, user authentication, rating and review systems, and connects to a real backend API.
 
 ## 🎬 Features
 
 ### Core Features
-- **User Authentication**: Secure login/register system with role-based access
-- **Movie Discovery**: Browse and search through a curated collection of movies
+- **User Authentication**: Secure login/register system with JWT token authentication
+- **Movie Discovery**: Browse and search through a curated collection of movies from backend API
 - **Personalized Recommendations**: ML-based recommendation algorithm using user preferences
-- **Rating & Review System**: Rate movies and write detailed reviews
+- **Rating System**: Rate movies with real-time backend integration
+- **Review System**: Write detailed reviews (local storage with backend integration planned)
 - **Advanced Search**: Search by title, director, genre, and more
 - **Responsive Design**: Beautiful UI that works on all devices
 
@@ -18,12 +19,12 @@ A comprehensive React-based movie recommendation system with machine learning co
 - **Movie Details**: Comprehensive movie information with cast, director, and reviews
 - **Genre Preferences**: Set your favorite genres for better recommendations
 
-### Admin Features
-- **Dashboard**: Overview of system statistics and user activity
-- **User Management**: View and manage user accounts
-- **Movie Management**: Add, edit, and manage movie entries
-- **Review Management**: Moderate user reviews and ratings
-- **System Settings**: Configure application settings
+### Backend Integration
+- **Real API**: Connects to deployed backend at `https://movierecommender-i9ne.onrender.com/api`
+- **JWT Authentication**: Secure token-based authentication
+- **Movie Data**: Fetches real movie data from backend
+- **Rating System**: Real-time rating submission to backend
+- **Recommendations**: ML-powered recommendations from backend
 
 ## 🚀 Technologies Used
 
@@ -35,8 +36,8 @@ A comprehensive React-based movie recommendation system with machine learning co
 - **Icons**: React Icons
 - **Rating System**: React Star Rating Component
 - **Notifications**: React Hot Toast
-- **HTTP Client**: Axios
-- **Form Handling**: React Hook Form
+- **HTTP Client**: Fetch API (native)
+- **Backend**: Python Flask with ML algorithms
 
 ## 📋 Prerequisites
 
@@ -67,6 +68,18 @@ Before running this project, make sure you have the following installed:
    ```
    http://localhost:3000
    ```
+
+## 🔌 API Endpoints
+
+The application connects to a real backend API with the following endpoints:
+
+| Method | Endpoint               | Description                     | Auth |
+| ------ |------------------------| ------------------------------- | ---- |
+| POST   | `/api/register`        | Register a new user             | ❌    |
+| POST   | `/api/login`           | Login and get JWT token         | ❌    |
+| GET    | `/api/movies`          | Get list of all movies          | ✅    |
+| POST   | `/api/rate`            | Submit a movie rating           | ✅    |
+| GET    | `/api/recommendations` | Get recommended movies for user | ✅    |
 
 ## 👤 Demo Credentials
 
@@ -145,12 +158,22 @@ The application is fully responsive and optimized for:
 
 ## 🎯 Machine Learning Concepts
 
-This project implements several ML concepts:
+This project implements several ML concepts through the backend API:
 
 1. **Collaborative Filtering**: User-based recommendations
 2. **Content-Based Filtering**: Genre-based recommendations
 3. **Hybrid Approach**: Combines multiple recommendation strategies
 4. **Preference Learning**: Adapts to user behavior over time
+
+## 🔌 Backend Integration
+
+The frontend connects to a real backend API that provides:
+
+- **Movie Data**: Comprehensive movie information with metadata
+- **User Authentication**: JWT-based secure authentication
+- **Rating System**: Real-time rating submission and retrieval
+- **Recommendation Engine**: ML-powered movie recommendations
+- **User Management**: User registration and profile management
 
 ## 🚀 Deployment
 
@@ -169,10 +192,11 @@ To deploy this application:
 
 ## 🔒 Security Features
 
+- **JWT Authentication**: Secure token-based authentication
 - **Input Validation**: Form validation and sanitization
 - **Role-Based Access**: Admin and user role management
-- **Secure Authentication**: Mock authentication system
-- **Data Protection**: Local storage for demo purposes
+- **API Security**: Backend API with proper authentication
+- **Data Protection**: Secure data transmission
 
 ## 🐛 Troubleshooting
 
@@ -205,6 +229,11 @@ To deploy this application:
    npm run dev -- --force
    ```
 
+5. **API Connection Issues**:
+   - Check if the backend API is running
+   - Verify the API_BASE URL in context files
+   - Check network connectivity
+
 ## 📄 License
 
 This project is created for educational purposes as a final year project.
@@ -219,6 +248,9 @@ For any questions or issues:
 1. Check the troubleshooting section above
 2. Review the code comments for implementation details
 3. Refer to the React and Vite documentation for framework-specific questions
+4. Check the backend API status at the deployed endpoint
 
 ---
+
+**Note**: This application connects to a real backend API for movie data and recommendations. The backend is deployed and provides ML-powered movie recommendations based on user preferences and ratings.
 

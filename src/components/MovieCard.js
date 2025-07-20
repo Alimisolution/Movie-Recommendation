@@ -5,7 +5,13 @@ import { FaStar, FaPlay } from 'react-icons/fa';
 import './MovieCard.css';
 
 const MovieCard = ({ movie }) => {
-  const { id, title, year, genre, rating, poster, director } = movie;
+  // Always use id from _id if not present
+  const id = movie.id || movie._id || movie.movieId;
+  const { title, year, genre, rating, poster, director } = movie;
+
+  if (!id) {
+    console.warn('MovieCard: movie is missing id!', movie);
+  }
 
   const handleImageError = (e) => {
     // Create a gradient fallback based on the movie title
@@ -15,6 +21,13 @@ const MovieCard = ({ movie }) => {
     e.target.style.display = 'none';
     e.target.nextSibling.style.display = 'flex';
   };
+
+  // Ensure genre is always an array
+  const safeGenres = Array.isArray(genre)
+    ? genre
+    : typeof genre === 'string' && genre.length > 0
+      ? genre.split(',').map(g => g.trim())
+      : [];
 
   return (
     <motion.div
@@ -59,13 +72,13 @@ const MovieCard = ({ movie }) => {
         </div>
         
         <div className="movie-genres">
-          {genre.slice(0, 2).map((g, index) => (
+          {safeGenres.slice(0, 2).map((g, index) => (
             <span key={index} className="genre-tag">
               {g}
             </span>
           ))}
-          {genre.length > 2 && (
-            <span className="genre-tag more">+{genre.length - 2}</span>
+          {safeGenres.length > 2 && (
+            <span className="genre-tag more">+{safeGenres.length - 2}</span>
           )}
         </div>
       </div>

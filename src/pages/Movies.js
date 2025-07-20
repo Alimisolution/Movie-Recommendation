@@ -16,7 +16,18 @@ const Movies = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
-  const genres = ['Action', 'Drama', 'Sci-Fi', 'Thriller', 'Crime', 'Romance', 'Comedy', 'Biography'];
+  // Build unique genres from loaded movies
+  const genres = React.useMemo(() => {
+    const genreSet = new Set();
+    movies.forEach(movie => {
+      if (Array.isArray(movie.genre)) {
+        movie.genre.forEach(g => genreSet.add(g));
+      } else if (typeof movie.genre === 'string' && movie.genre.length > 0) {
+        genreSet.add(movie.genre);
+      }
+    });
+    return Array.from(genreSet).sort((a, b) => a.localeCompare(b));
+  }, [movies]);
 
   useEffect(() => {
     let results = movies;
@@ -82,6 +93,11 @@ const Movies = () => {
   const getRecentMovies = () => {
     return getLatestMovies(3);
   };
+
+  // Debug: log movies missing id
+  filteredMovies.forEach(m => {
+    if (!m.id) console.warn('Movie in filteredMovies missing id:', m);
+  });
 
   if (loading) {
     return (
